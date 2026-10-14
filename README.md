@@ -96,7 +96,7 @@ python infer.py --model best.pt --source armorvideo.mp4 --output result.mp4 --de
 
 &#x20; 1. 环境报错：在命令行输入 pip 提示“不是内部或外部命令”。排查发现是电脑未安装 Python，后来在官网下载 3.12.4 版本，并在安装时勾选“Add Python to PATH”后解决。
 
-&#x20; 2. 路径报错：运行脚本时提示 \[ERROR] 无法打开视频文件: armor\_video.mp4。排查发现是视频文件实际命名为 armorvideo.mp4（没有下划线），修改命令中的文件名后成功运行。
+&#x20; 2. 路径报错：运行脚本时提示 \[ERROR] 无法打开视频文件: armor\_video.mp4。排查发现是视频文件实际命名为 armorvideo.mp4（没有下划线），修改命令中的文件名后成功运行
 
 
 
