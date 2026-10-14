@@ -98,3 +98,5 @@ python infer.py --model best.pt --source armorvideo.mp4 --output result.mp4 --de
 
 &#x20; 2. 路径报错：运行脚本时提示 \[ERROR] 无法打开视频文件: armor\_video.mp4。排查发现是视频文件实际命名为 armorvideo.mp4（没有下划线），修改命令中的文件名后成功运行。
 
+
+
