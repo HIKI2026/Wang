@@ -1,36 +1,100 @@
-# YOLO 推理项目 (yolo-inference)
+```markdown
 
-## 项目简介
-本项目是用于完成 YOLO 模型推理任务的作业。包含推理代码、依赖说明以及运行文档。
+\# YOLOv8 装甲板检测与关键点推理
 
-## 环境依赖
-- Python 3.8+
-- PyTorch
-- ultralytics
-- 其他依赖请见 `requirements.txt`
 
-## 安装步骤
-1. 克隆仓库到本地：
-   ```bash
-   git clone https://github.com/WANG2026013705/Wang.git
-   cd Wang
-```
 
-2. 安装依赖：
-   ```bash
-   pip install -r requirements.txt
-   ```
+\## 1. 项目完成的功能
 
-使用方法
+本项目使用 YOLO 模型对视频进行推理，具体功能包括：
 
-运行推理脚本：
+\- 加载 `best.pt` 模型权重，读取本地拍摄的视频。
+
+\- 对视频逐帧执行推理。
+
+\- 在检测到目标时，显示检测框、类别、置信度，以及该目标的4个关键点。
+
+\- 将推理结果保存为与原视频内容对应、能够正常播放的视频文件。
+
+
+
+\## 2. 环境依赖与运行配置
+
+\- \*\*Python版本\*\*：3.12.4
+
+\- \*\*主要依赖\*\*：`ultralytics`、`opencv-python` (详见 `requirements.txt`)
+
+\- \*\*运行设备\*\*：默认使用 CPU 进行推理，也支持切换为 GPU (通过 `--device 0` 参数)。
+
+
+
+\## 3. 模型权重的准备方式与放置位置
+
+\- 本次作业未重新训练模型，直接使用参考材料中提供的 `best.pt` 权重文件。
+
+\- 请将 `best.pt` 放置于项目根目录下（与 `infer.py` 同级）。
+
+
+
+\## 4. 依赖安装步骤、实际运行命令和结果保存位置
+
+\*\*依赖安装步骤\*\*：
 
 ```bash
-python inference.py --weights yolov8n.pt --source data/test.jpg
+
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
 ```
 
-目录结构
 
-· inference.py: 推理核心代码
-· requirements.txt: 依赖列表
-· docs/: 相关文档
+
+实际运行命令：
+
+
+
+```bash
+
+python infer.py --model best.pt --source armorvideo.mp4 --output result.mp4 --device cpu
+
+```
+
+
+
+结果保存位置：
+
+推理结果视频将保存在当前目录下，文件名为 result.mp4。
+
+
+
+5\. 视频拍摄地点、时长及场景说明
+
+
+
+· 拍摄地点：水建楼D402
+
+· 时长：：31秒
+
+· 场景说明：拍摄对象为一个带有数字3的绿色装甲板，在桌面上缓慢移动并进行旋转，背景为灰色地面。
+
+
+
+6\. 能展示检测框和关键点的代表性结果截图
+
+
+
+!\[结果截图](screenshot.jpg)
+
+
+
+7\. 实际识别表现、遇到的问题及处理方法
+
+
+
+· 识别表现：模型对装甲板的识别效果良好，能够准确框出目标，置信度较高，且能准确识别出4个关键点，未出现明显的漏检或误检现象（如果有误检可以在这里说明）。
+
+· 遇到的问题及处理方法：
+
+&#x20; 1. 环境报错：在命令行输入 pip 提示“不是内部或外部命令”。排查发现是电脑未安装 Python，后来在官网下载 3.12.4 版本，并在安装时勾选“Add Python to PATH”后解决。
+
+&#x20; 2. 路径报错：运行脚本时提示 \[ERROR] 无法打开视频文件: armor\_video.mp4。排查发现是视频文件实际命名为 armorvideo.mp4（没有下划线），修改命令中的文件名后成功运行。
+
